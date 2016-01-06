@@ -162,6 +162,14 @@
 					<skipIfEmpty>true</skipIfEmpty>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.1.0</version>
+				<configuration>
+					<repoToken>9befC88fZ0oz7UrvbORx7vurLvlkCKUvq</repoToken>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
