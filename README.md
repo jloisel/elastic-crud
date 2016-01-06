@@ -13,6 +13,7 @@ Add the following Maven dependency to get started quickly with Spring:
     <version>1.0.0</version>
 </dependency>
 ```
+(Not released yet)
 
 ### Java Example
 
