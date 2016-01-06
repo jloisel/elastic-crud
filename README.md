@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jloisel/elastic-crud.svg)](https://travis-ci.org/jloisel/elastic-crud)
+
 ## Elasticsearch Simple CRUD Repository
 
 Easily perform Create / Read / Update / Delete operations on beans stored in Elasticsearch. [Spring Data Elasticsearch](https://github.com/spring-projects/spring-data-elasticsearch) lacks maintenance and is already a few Elasticsearch versions behind the latest version.
@@ -13,6 +15,7 @@ Add the following Maven dependency to get started quickly with Spring:
     <version>1.0.0</version>
 </dependency>
 ```
+(Not released yet)
 
 ### Java Example
 
