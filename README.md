@@ -53,12 +53,58 @@ public void method() {
   final Person person = Person.builder().id("").firstname("John").lastname("Smith").build();
   final Person withId = repository.save(person);
   
+  // Find by id
+  final Optional<Person> byId = repository.findOne(withId.getId());
+
+  // Delete from Elasticsearch definitively
+  
+  
   // Search by firstname (with "not_analyzed" string mapping)
   final TermQueryBuilder term = new TermQueryBuilder("firstname", PERSON.getFirstname());
   final List<Person> found = repository.search(term);
-  ...
+  
 }
 ```
+
+### Type mapping
+
+Beans stored in Elasticsearch must have **_source** field enabled: see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html. The following example Json shows how to enable _source field:
+
+```json
+{
+  "template": "datas",
+  "settings": {
+    "number_of_shards": 5,
+    "number_of_replicas": 1,
+    "index.refresh_interval": -1,
+  },
+  "mappings": {
+    "_default_": {
+      "_all": {
+          "enabled": false
+       },
+       "_source": {
+          "enabled": true
+       },
+       "dynamic_templates": [
+         {
+           "strings": {
+             "match_mapping_type": "string",
+             "mapping": {
+               "type": "string",
+               "index": "not_analyzed"
+             }
+           }
+         }
+       ]
+    }
+  }
+}
+```
+
+### Index refresh
+
+Every mutating query (insert, delete) performed on the index automatically refreshes it. I would recommend to disable index refresh as shows in the Json above.
 
 ### Json Serialization
 
