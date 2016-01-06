@@ -55,14 +55,18 @@ public void method() {
   
   // Find by id
   final Optional<Person> byId = repository.findOne(withId.getId());
-
-  // Delete from Elasticsearch definitively
   
+  assertTrue(repository.exists(byId));
   
   // Search by firstname (with "not_analyzed" string mapping)
   final TermQueryBuilder term = new TermQueryBuilder("firstname", PERSON.getFirstname());
   final List<Person> found = repository.search(term);
+  assertTrue(found.contains(byId));
   
+  // Delete from Elasticsearch definitively
+  repository.delete(withId.getId());
+
+  assertFalse(repository.exists(byId));
 }
 ```
 
