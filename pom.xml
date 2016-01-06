@@ -14,7 +14,7 @@
 	<description>Easily perform CRUD operations on Beans stored on Elasticsearch.</description>
 
 	<properties>
-		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss</maven.build.timestamp.format>
 		<integration.test.classes>**/*IntegrationTest.java</integration.test.classes>
 
 		<commons.io.version>2.4</commons.io.version>
