@@ -21,5 +21,5 @@ public interface Entity {
    * @param id new id to set
    * @return
    */
-  <T extends Entity> T withId(String id);
+  Entity withId(String id);
 }

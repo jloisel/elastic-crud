@@ -36,6 +36,7 @@ import lombok.experimental.FieldDefaults;
 
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
+@SuppressWarnings("unchecked")
 final class ElasticSearchRepository<T extends Entity> implements ElasticRepository<T> {
   private static final TimeValue SCROLL_TIME = timeValueMinutes(1);
   protected static final int SCROLL_SIZE = 100;
@@ -75,7 +76,7 @@ final class ElasticSearchRepository<T extends Entity> implements ElasticReposito
       
       for(final SearchHit hit : hits) {
         final String source = hit.getSourceAsString();
-        final T entity = deserializer.apply(source).withId(hit.getId());
+        final T entity = (T) deserializer.apply(source).withId(hit.getId());
         builder.add(entity);
       }
       
@@ -115,7 +116,7 @@ final class ElasticSearchRepository<T extends Entity> implements ElasticReposito
     final ImmutableList.Builder<T> saved = ImmutableList.builder();
     for(int i=0; i<items.length; i++) {
       final BulkItemResponse item = items[i];
-      final T entity = entities.get(i).withId(item.getId());
+      final T entity = (T) entities.get(i).withId(item.getId());
       saved.add(entity);
     }
     return saved.build();
@@ -142,7 +143,7 @@ final class ElasticSearchRepository<T extends Entity> implements ElasticReposito
     return Optional
         .ofNullable(json)
         .map(deserializer)
-        .map(e -> e.withId(id));
+        .map(e -> (T) e.withId(id));
   }
 
   @Override
@@ -159,7 +160,7 @@ final class ElasticSearchRepository<T extends Entity> implements ElasticReposito
       final GetResponse get = item.getResponse();
       final String json = get.getSourceAsString();
       final T entity = deserializer.apply(json);
-      builder.add(entity.withId(get.getId()));
+      builder.add((T) entity.withId(get.getId()));
     }
 
     return builder.build();
