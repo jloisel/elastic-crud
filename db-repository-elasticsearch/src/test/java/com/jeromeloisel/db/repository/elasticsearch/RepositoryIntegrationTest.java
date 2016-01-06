@@ -157,6 +157,10 @@ public class RepositoryIntegrationTest {
 
   @After
   public void after() {
-    repository.delete(PERSON);
+    final List<Person> found = repository.search(new MatchAllQueryBuilder());
+    if(found.isEmpty()) {
+      return;
+    }
+    repository.deleteAll(found);
   }
 }

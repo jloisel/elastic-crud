@@ -1,10 +1,9 @@
 {
   "template": "datas",
   "settings": {
-    "number_of_shards": 5,
+    "number_of_shards": 1,
     "number_of_replicas": 1,
-    "index.refresh_interval": -1,
-    "index.cache.query.enable": true
+    "index.refresh_interval": -1
   },
   "mappings": {
     "_default_": {
