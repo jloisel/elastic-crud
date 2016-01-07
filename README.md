@@ -6,6 +6,8 @@
 
 Easily perform Create / Read / Update / Delete operations on beans stored in Elasticsearch. [Spring Data Elasticsearch](https://github.com/spring-projects/spring-data-elasticsearch) lacks maintenance and is already a few Elasticsearch versions behind the latest version.
 
+This project powers our [JMeter Load Testing platform](https://octoperf.com).
+
 ### Spring
 
 Add the following Maven dependency to get started quickly with Spring:
