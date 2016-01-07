@@ -6,7 +6,7 @@
 
 Easily perform Create / Read / Update / Delete operations on beans stored in Elasticsearch. [Spring Data Elasticsearch](https://github.com/spring-projects/spring-data-elasticsearch) lacks maintenance and is already a few Elasticsearch versions behind the latest version.
 
-### Maven configuration
+### Spring
 
 Add the following Maven dependency to get started quickly with Spring:
 
@@ -17,7 +17,28 @@ Add the following Maven dependency to get started quickly with Spring:
     <version>1.0.0</version>
 </dependency>
 ```
-(Not released yet)
+### Vanilla Java
+
+To get started with Vanilla Java application, you need to add two dependencies:
+
+```xml
+<dependency>
+    <groupId>com.jeromeloisel</groupId>
+    <artifactId>db-conversion-jackson</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+This dependency provides the Jackson Json serialization mechanism.
+
+```xml
+<dependency>
+    <groupId>com.jeromeloisel</groupId>
+    <artifactId>db-repository-elasticsearch</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+This dependency provides the **ElasticSearchRepositoryFactory** to create **ElasticRepository**.
 
 ### Java Example
 
@@ -60,7 +81,6 @@ public void method() {
   
   // Find by id
   final Optional<Person> byId = repository.findOne(withId.getId());
-  
   assertTrue(repository.exists(byId));
   
   // Search by firstname (with "not_analyzed" string mapping)
@@ -70,7 +90,6 @@ public void method() {
   
   // Delete from Elasticsearch definitively
   repository.delete(withId.getId());
-
   assertFalse(repository.exists(byId));
 }
 ```
