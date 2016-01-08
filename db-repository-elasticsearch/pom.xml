@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.jeromeloisel</groupId>
 		<artifactId>elasticsearch-crud</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.1</version>
 	</parent>
 	<artifactId>db-repository-elasticsearch</artifactId>
 
