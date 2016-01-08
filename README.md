@@ -15,7 +15,7 @@ Add the following Maven dependency to get started quickly with Spring:
 ```xml
 <dependency>
     <groupId>com.jeromeloisel</groupId>
-    <artifactId>db-repository-elasticsearch-starter</artifactId>
+    <artifactId>db-spring-elasticsearch-starter</artifactId>
     <version>1.0.1</version>
 </dependency>
 ```
