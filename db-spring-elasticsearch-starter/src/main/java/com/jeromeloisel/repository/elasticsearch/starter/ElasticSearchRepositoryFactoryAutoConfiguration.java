@@ -11,8 +11,14 @@ import com.jeromeloisel.db.conversion.api.JsonSerializationFactory;
 import com.jeromeloisel.db.repository.api.DatabaseRepositoryFactory;
 import com.jeromeloisel.db.repository.elasticsearch.ElasticSearchRepositoryFactory;
 
+/**
+ * Elasticsearch Repository autoconfiguration.
+ * 
+ * @author jerome
+ *
+ */
 @Configuration
-class ElasticSearchRepositoryFactoryAutoConfiguration {
+public class ElasticSearchRepositoryFactoryAutoConfiguration {
 
   @Bean
   @Autowired

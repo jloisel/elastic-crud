@@ -11,9 +11,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jeromeloisel.db.conversion.api.JsonSerializationFactory;
 import com.jeromeloisel.db.conversion.jackson.JacksonSerializationFactory;
 
+/**
+ * Jackson Json Conversion autoconfiguration.
+ * 
+ * @author jerome
+ *
+ */
 @Configuration
 @ConditionalOnClass(ObjectMapper.class)
-class JacksonConversionAutoConfiguration {
+public class JacksonConversionAutoConfiguration {
 
   @Bean
   @Autowired

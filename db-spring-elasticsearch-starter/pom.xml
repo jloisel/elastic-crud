@@ -6,7 +6,7 @@
 		<artifactId>elasticsearch-crud</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>db-repository-elasticsearch-starter</artifactId>
+	<artifactId>db-spring-elasticsearch-starter</artifactId>
 	<name>Spring Boot Elasticsearch DB starter</name>
 	<description>ElasticSearch Repository Spring Boot autoconfiguration with Jackson serialization.</description>
 

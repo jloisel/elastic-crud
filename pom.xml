@@ -264,7 +264,7 @@
 		<module>db-conversion-api</module>
 		<module>db-conversion-jackson</module>
 		<module>db-repository-elasticsearch</module>
-		<module>db-repository-elasticsearch-starter</module>
+		<module>db-spring-elasticsearch-starter</module>
 		<module>db-integration-test</module>
 	</modules>
 </project>
