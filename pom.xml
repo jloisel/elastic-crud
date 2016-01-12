@@ -21,7 +21,7 @@
 		<commons.io.version>2.4</commons.io.version>
 		<elasticsearch.version>2.1.1</elasticsearch.version>
 		<guava.version>19.0</guava.version>
-		<jackson.version>2.6.4</jackson.version>
+		<jackson.version>2.7.0</jackson.version>
 		<junit.version>4.12</junit.version>
 		<lombok.version>1.16.6</lombok.version>
 		<lucene.version>5.3.1</lucene.version>
