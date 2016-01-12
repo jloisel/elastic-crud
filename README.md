@@ -17,7 +17,7 @@ Add the following Maven dependency to get started quickly with Spring:
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-spring-elasticsearch-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 ### Vanilla Java
@@ -28,7 +28,7 @@ To get started with Vanilla Java application, you need to add two dependencies:
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-conversion-jackson</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 This dependency provides the Jackson Json serialization mechanism.
@@ -37,7 +37,7 @@ This dependency provides the Jackson Json serialization mechanism.
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-repository-elasticsearch</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
