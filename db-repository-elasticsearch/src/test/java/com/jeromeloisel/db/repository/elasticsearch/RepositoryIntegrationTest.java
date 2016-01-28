@@ -120,6 +120,12 @@ public class RepositoryIntegrationTest {
     assertEquals(1, saved.size());
     repository.delete(saved.get(0));
   }
+  
+  @Test
+  public void shouldNotSaveAll() {
+    final List<Person> saved = repository.saveAll(ImmutableList.of());
+    assertEquals(0, saved.size());
+  }
 
   @Test
   public void shouldFindByFirstname() {

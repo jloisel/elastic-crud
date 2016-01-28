@@ -98,6 +98,10 @@ final class ElasticSearchRepository<T extends Entity> implements ElasticReposito
 
   @Override
   public List<T> saveAll(final List<T> entities) {
+    if(entities.isEmpty()) {
+      return entities;
+    }
+    
     final BulkRequestBuilder bulk = client
         .prepareBulk()
         .setRefresh(true);
