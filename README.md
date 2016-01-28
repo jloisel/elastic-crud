@@ -2,6 +2,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/568d2e269c1b98002b000030/badge.svg?style=flat)](https://www.versioneye.com/user/projects/568d2e269c1b98002b000030)
 [![Coverage Status](https://coveralls.io/repos/jloisel/elastic-crud/badge.svg?branch=master&service=github)](https://coveralls.io/github/jloisel/elastic-crud?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jeromeloisel/db-spring-elasticsearch-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jeromeloisel/db-spring-elasticsearch-starter)
+[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.jcabi/jcabi-email/badge.svg)](http://www.javadoc.io/doc/com.jeromeloisel/elastic-crud)
 
 ## Elasticsearch Simple CRUD Repository
 
