@@ -19,7 +19,7 @@
 		<integration.test.classes>**/*IntegrationTest.java</integration.test.classes>
 
 		<commons.io.version>2.4</commons.io.version>
-		<elasticsearch.version>2.1.1</elasticsearch.version>
+		<elasticsearch.version>2.2.0</elasticsearch.version>
 		<guava.version>19.0</guava.version>
 		<jackson.version>2.7.0</jackson.version>
 		<junit.version>4.12</junit.version>
