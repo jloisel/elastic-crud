@@ -10,6 +10,17 @@ Easily perform Create / Read / Update / Delete operations on beans stored in Ela
 
 This project powers our [JMeter Load Testing platform](https://octoperf.com).
 
+### Versions
+
+The following table shows the correspondance between our versions and Elasticsearch versions:
+
+| Version       | ElasticSearch Version |
+| ------------- |:---------------------:|
+| 1.1.x      | 2.1.x |
+| 2.2.x      | 2.2.x |
+
+As of 2.2.x, the project is going to strictly follow the same versioning as [elasticsearch](https://github.com/elastic/elasticsearch).
+
 ### Spring
 
 Add the following Maven dependency to get started quickly with Spring:
@@ -18,7 +29,7 @@ Add the following Maven dependency to get started quickly with Spring:
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-spring-elasticsearch-starter</artifactId>
-    <version>1.1.1</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 ### Vanilla Java
@@ -29,7 +40,7 @@ To get started with Vanilla Java application, you need to add two dependencies:
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-conversion-jackson</artifactId>
-    <version>1.1.1</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 This dependency provides the Jackson Json serialization mechanism.
@@ -38,7 +49,7 @@ This dependency provides the Jackson Json serialization mechanism.
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-repository-elasticsearch</artifactId>
-    <version>1.1.1</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
