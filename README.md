@@ -18,6 +18,7 @@ The following table shows the correspondance between our versions and Elasticsea
 | ------------- |:---------------------:|
 | 1.1.x      | 2.1.x |
 | 2.2.x      | 2.2.x |
+| 2.3.x      | 2.3.x |
 
 As of 2.2.x, the project is going to strictly follow the same versioning as [elasticsearch](https://github.com/elastic/elasticsearch).
 
