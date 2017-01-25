@@ -1,16 +1,13 @@
 package com.jeromeloisel.db.repository.elasticsearch;
 
-import static com.google.common.base.Strings.emptyToNull;
-import static java.util.Optional.ofNullable;
-import static java.util.stream.Collectors.toList;
-import static lombok.AccessLevel.PACKAGE;
-import static lombok.AccessLevel.PRIVATE;
-import static org.elasticsearch.common.unit.TimeValue.timeValueMinutes;
-import static org.elasticsearch.search.sort.SortBuilders.fieldSort;
-
-import java.util.List;
-import java.util.Optional;
-
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
+import com.jeromeloisel.db.conversion.api.JsonDeserializer;
+import com.jeromeloisel.db.conversion.api.JsonSerializer;
+import com.jeromeloisel.db.entity.Entity;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.experimental.FieldDefaults;
 import org.elasticsearch.action.bulk.BulkItemResponse;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -24,15 +21,17 @@ import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHit;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
-import com.jeromeloisel.db.conversion.api.JsonDeserializer;
-import com.jeromeloisel.db.conversion.api.JsonSerializer;
-import com.jeromeloisel.db.entity.Entity;
+import java.util.List;
+import java.util.Optional;
 
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
-import lombok.experimental.FieldDefaults;
+import static com.google.common.base.Strings.emptyToNull;
+import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.toList;
+import static lombok.AccessLevel.PACKAGE;
+import static lombok.AccessLevel.PRIVATE;
+import static org.elasticsearch.action.support.WriteRequest.RefreshPolicy.IMMEDIATE;
+import static org.elasticsearch.common.unit.TimeValue.timeValueMinutes;
+import static org.elasticsearch.search.sort.SortBuilders.fieldSort;
 
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
@@ -104,7 +103,7 @@ final class ElasticSearchRepository<T extends Entity> implements ElasticReposito
     
     final BulkRequestBuilder bulk = client
         .prepareBulk()
-        .setRefresh(true);
+        .setRefreshPolicy(IMMEDIATE);
     
     for(final T entity : entities) {
       final IndexRequestBuilder request = client
@@ -189,7 +188,7 @@ final class ElasticSearchRepository<T extends Entity> implements ElasticReposito
   public List<String> deleteAllIds(final List<String> ids) {
     final BulkRequestBuilder bulk = client
         .prepareBulk()
-        .setRefresh(true);
+        .setRefreshPolicy(IMMEDIATE);
     
     for(final String id : ids) {
       bulk.add(client.prepareDelete(index, type, id));

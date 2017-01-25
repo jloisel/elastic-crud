@@ -1,9 +1,9 @@
 package com.jeromeloisel.db.repository.api;
 
+import com.jeromeloisel.db.entity.Entity;
+
 import java.util.List;
 import java.util.Optional;
-
-import com.jeromeloisel.db.entity.Entity;
 
 /**
  * Basic Crud Database repository.
@@ -73,7 +73,6 @@ public interface DatabaseRepository<T extends Entity> {
    * @param id must not be {@literal null}.
    * @return the deleted entity id
    * @throws IllegalArgumentException in case the given {@code id} is {@literal null}
-   * @throws DocumentDoesNotExistException when there is no document with this id
    */
   String delete(String id);
 
@@ -96,7 +95,7 @@ public interface DatabaseRepository<T extends Entity> {
   /**
    * Deletes all the given entities at once.
    * 
-   * @param entities
+   * @param ids
    */
   List<String> deleteAllIds(List<String> ids);
 }

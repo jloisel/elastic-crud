@@ -1,20 +1,18 @@
 package com.jeromeloisel.db.repository.elasticsearch;
 
-import static com.google.common.base.Preconditions.checkState;
-import static lombok.AccessLevel.PRIVATE;
-
-import org.elasticsearch.client.Client;
-
 import com.jeromeloisel.db.conversion.api.JsonDeserializer;
 import com.jeromeloisel.db.conversion.api.JsonSerializationFactory;
 import com.jeromeloisel.db.conversion.api.JsonSerializer;
 import com.jeromeloisel.db.entity.Document;
 import com.jeromeloisel.db.entity.Entity;
 import com.jeromeloisel.db.repository.api.DatabaseRepositoryFactory;
-
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
+import org.elasticsearch.client.Client;
+
+import static com.google.common.base.Preconditions.checkState;
+import static lombok.AccessLevel.PRIVATE;
 
 @AllArgsConstructor
 @FieldDefaults(level=PRIVATE, makeFinal = true)

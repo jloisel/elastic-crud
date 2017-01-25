@@ -1,16 +1,15 @@
 package com.jeromeloisel.db.conversion.jackson;
 
-import static com.google.common.testing.NullPointerTester.Visibility.PACKAGE;
-import static org.junit.Assert.assertEquals;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.testing.NullPointerTester;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.testing.NullPointerTester;
+import static com.google.common.testing.NullPointerTester.Visibility.PACKAGE;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JacksonSerializationFactoryTest {
