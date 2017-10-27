@@ -1,10 +1,11 @@
 package com.jeromeloisel.db.entity;
 
 import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Defines the index name and the type in which the document is stored.
@@ -13,8 +14,8 @@ import java.lang.annotation.Target;
  *
  */
 @Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.TYPE })
+@Retention(RUNTIME)
+@Target(TYPE)
 public @interface Document {
 
   /**

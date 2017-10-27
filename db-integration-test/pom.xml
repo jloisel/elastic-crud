@@ -23,10 +23,6 @@
       <version>${spring.boot.version}</version>
 		</dependency>
     <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
     </dependency>
@@ -41,6 +37,11 @@
 			<artifactId>db-conversion-jackson</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+    <dependency>
+      <groupId>com.jeromeloisel</groupId>
+      <artifactId>db-scroll-elastic</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

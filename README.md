@@ -20,6 +20,7 @@ The following table shows the correspondance between our versions and Elasticsea
 | 2.2.x      | 2.2.x |
 | 2.3.x      | 2.3.x |
 | 5.1.x      | 5.1.x |
+| 5.6.x      | 5.6.x |
 
 As of 2.2.x, the project is going to strictly follow the same versioning as [elasticsearch](https://github.com/elastic/elasticsearch).
 
@@ -31,7 +32,7 @@ Add the following Maven dependency to get started quickly with Spring:
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-spring-elasticsearch-starter</artifactId>
-    <version>5.1.2</version>
+    <version>5.6.3</version>
 </dependency>
 ```
 ### Vanilla Java
@@ -42,7 +43,7 @@ To get started with Vanilla Java application, you need to add two dependencies:
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-conversion-jackson</artifactId>
-    <version>5.1.2</version>
+    <version>5.6.3</version>
 </dependency>
 ```
 This dependency provides the Jackson Json serialization mechanism.
@@ -51,7 +52,7 @@ This dependency provides the Jackson Json serialization mechanism.
 <dependency>
     <groupId>com.jeromeloisel</groupId>
     <artifactId>db-repository-elasticsearch</artifactId>
-    <version>5.1.2</version>
+    <version>5.6.3</version>
 </dependency>
 ```
 

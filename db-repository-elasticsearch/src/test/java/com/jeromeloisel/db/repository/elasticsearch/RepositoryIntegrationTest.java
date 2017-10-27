@@ -1,8 +1,9 @@
 package com.jeromeloisel.db.repository.elasticsearch;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
 import com.jeromeloisel.Application;
+import com.jeromeloisel.db.repository.api.DatabaseRepository;
+import com.jeromeloisel.db.repository.api.DatabaseRepositoryFactory;
 import org.elasticsearch.action.admin.indices.template.put.PutIndexTemplateRequest;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.IndicesAdminClient;
@@ -22,6 +23,8 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkState;
 import static org.apache.commons.io.IOUtils.toByteArray;
+import static org.elasticsearch.action.support.WriteRequest.RefreshPolicy.IMMEDIATE;
+import static org.elasticsearch.common.xcontent.XContentType.JSON;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -31,38 +34,36 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest(classes=Application.class)
 public class RepositoryIntegrationTest {
 
-  private static final String INDEX = "datas";
-
   private static final Person PERSON = Person
-      .builder()
-      .id("")
-      .firstname("John")
-      .lastname("Smith")
-      .build();
+    .builder()
+    .id("")
+    .firstname("John")
+    .lastname("Smith")
+    .build();
 
   @Autowired
   private Client client;
   @Autowired
-  private ElasticSearchRepositoryFactory factory;
+  private DatabaseRepositoryFactory factory;
 
-  private ElasticRepository<Person> repository;
+  private DatabaseRepository<Person> repository;
 
   @Before
   public void before() throws IOException {
     repository = factory.create(Person.class);
-
+    repository.refreshPolicy(IMMEDIATE);
     final IndicesAdminClient indices = client.admin().indices();
 
-    final PutIndexTemplateRequest datas = indices.preparePutTemplate(INDEX)
-        .setSource(toByteArray(getClass().getResourceAsStream("/datas.json")))
-        .request();
+    final PutIndexTemplateRequest datas = indices.preparePutTemplate("datas")
+      .setSource(toByteArray(getClass().getResourceAsStream("/datas.json")), JSON)
+      .request();
     checkState(indices.putTemplate(datas).actionGet().isAcknowledged());
   }
 
   @Test
   public void shouldSaveTwice() {
-    final Builder<Person> builder = ImmutableList.builder();
-    for(int i=0; i<ElasticSearchRepository.SCROLL_SIZE * 2;i++) {
+    final ImmutableList.Builder<Person> builder = ImmutableList.builder();
+    for(int i=0; i< ElasticSearchRepository.SCROLL_SIZE * 2;i++) {
       builder.add(PERSON);
     }
     final List<Person> persons = builder.build();
@@ -74,6 +75,38 @@ public class RepositoryIntegrationTest {
     assertEquals(persons.size(), found.size());
 
     repository.deleteAll(saved);
+  }
+
+  @Test
+  public void shouldDeleteAllByQuery() {
+    final Person saved = repository.save(PERSON);
+    final TermQueryBuilder byFirstname = new TermQueryBuilder("firstname", PERSON.getFirstname());
+    repository.deleteAllByQuery(byFirstname);
+    assertFalse(repository.exists(saved));
+  }
+
+  @Test
+  public void shouldNotDeleteAllByIds() {
+    final List<String> ids = repository.deleteAllIds(ImmutableList.of());
+    assertTrue(ids.isEmpty());
+  }
+
+  @Test
+  public void shouldNotDeleteAllByQuery() {
+    final Person saved = repository.save(PERSON);
+    final TermQueryBuilder byFirstname = new TermQueryBuilder("firstname", PERSON.getLastname());
+    repository.deleteAllByQuery(byFirstname);
+    assertTrue(repository.exists(saved));
+    repository.delete(saved);
+  }
+
+  @Test
+  public void shouldNotDeleteById() {
+    final Person saved = repository.save(PERSON);
+    repository.delete(saved.getId() + "invalid");
+    assertTrue(repository.exists(saved));
+    repository.delete(saved.getId());
+    assertFalse(repository.exists(saved));
   }
 
   @Test
@@ -114,12 +147,22 @@ public class RepositoryIntegrationTest {
   }
 
   @Test
+  public void shouldNotFindAll() {
+    assertEquals(ImmutableList.of(), repository.findAll(ImmutableList.of()));
+  }
+
+  @Test
+  public void shouldNotFindAllIfInvalid() {
+    assertEquals(ImmutableList.of(), repository.findAll(ImmutableList.of("invalid")));
+  }
+
+  @Test
   public void shouldSaveAll() {
     final List<Person> saved = repository.saveAll(ImmutableList.of(PERSON));
     assertEquals(1, saved.size());
     repository.delete(saved.get(0));
   }
-  
+
   @Test
   public void shouldNotSaveAll() {
     final List<Person> saved = repository.saveAll(ImmutableList.of());
@@ -143,8 +186,8 @@ public class RepositoryIntegrationTest {
     final TermQueryBuilder byFirstname = new TermQueryBuilder("firstname", PERSON.getFirstname());
     final TermQueryBuilder byLastname = new TermQueryBuilder("lastname", PERSON.getLastname());
     final BoolQueryBuilder bool = new BoolQueryBuilder()
-        .must(byFirstname)
-        .must(byLastname);
+      .must(byFirstname)
+      .must(byLastname);
 
     final List<Person> search = repository.search(bool);
     assertEquals(1, search.size());
@@ -162,10 +205,6 @@ public class RepositoryIntegrationTest {
 
   @After
   public void after() {
-    final List<Person> found = repository.search(new MatchAllQueryBuilder());
-    if(found.isEmpty()) {
-      return;
-    }
-    repository.deleteAll(found);
+    repository.delete(PERSON);
   }
 }
