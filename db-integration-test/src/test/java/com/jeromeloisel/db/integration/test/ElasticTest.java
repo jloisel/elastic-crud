@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class ESTest extends SpringElasticSearchTest {
+public class ElasticTest extends SpringElasticSearchTest {
 
   @Test
   public void shouldAutowire() {
