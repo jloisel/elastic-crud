@@ -177,9 +177,6 @@
         <version>2.20.1</version>
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
-          <excludes>
-            <exclude>${integration.test.classes}</exclude>
-          </excludes>
           <systemPropertyVariables>
             <java.security.egd>file:/dev/./urandom</java.security.egd>
             <java.awt.headless>true</java.awt.headless>
