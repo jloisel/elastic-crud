@@ -169,6 +169,9 @@ final class ElasticSearchRepository<T extends Entity> implements DatabaseReposit
 
     for(final MultiGetItemResponse item : response.getResponses()) {
       final GetResponse get = item.getResponse();
+      if(get.isSourceEmpty()) {
+        continue;
+      }
 
       final String json = get.getSourceAsString();
       final T entity = deserializer.apply(json);

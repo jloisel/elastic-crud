@@ -176,7 +176,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.20.1</version>
         <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
           <systemPropertyVariables>
             <java.security.egd>file:/dev/./urandom</java.security.egd>
             <java.awt.headless>true</java.awt.headless>
