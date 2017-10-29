@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static org.elasticsearch.common.xcontent.XContentType.JSON;
 
-public class ElasticScrollingFactoryESTest extends SpringElasticSearchTest {
+public class ElasticScrollingFactoryEsTest extends SpringElasticSearchTest {
   private static final String INDEX = "data";
   private static final String TYPE = "person";
   private static final int SIZE = ElasticScrollingFactory.DEFAULT_SCROLL_SIZE + 1;
