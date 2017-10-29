@@ -7,6 +7,7 @@ import com.jeromeloisel.db.scroll.api.DatabaseScroll;
 import com.jeromeloisel.db.scroll.api.DatabaseScrollingFactory;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.client.IndicesAdminClient;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,7 +34,9 @@ public class BulkDeleteESTest extends SpringElasticSearchTest {
 
   @Before
   public void before() throws IOException {
-    client.admin().indices().prepareCreate(INDEX).execute().actionGet();
+    if(!client.admin().indices().prepareExists(INDEX).execute().actionGet().isExists()) {
+      client.admin().indices().prepareCreate(INDEX).execute().actionGet();
+    }
     final BulkRequestBuilder bulk = client.prepareBulk();
     final JsonSerializer<Person> serializer = mapper.serializer(Person.class);
     for (int i = 0; i < SIZE; i++) {
@@ -67,6 +70,9 @@ public class BulkDeleteESTest extends SpringElasticSearchTest {
 
   @After
   public void after() {
-    client.admin().indices().prepareDelete(INDEX).execute().actionGet();
+    final IndicesAdminClient indices = client.admin().indices();
+    if(indices.prepareExists(INDEX).execute().actionGet().isExists()) {
+      indices.prepareDelete(INDEX).execute().actionGet();
+    }
   }
 }

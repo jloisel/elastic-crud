@@ -16,8 +16,8 @@ public class ESTest extends SpringElasticSearchTest {
   public void shouldAutowire() {
     assertNotNull(client);
     final IndicesAdminClient indices = client.admin().indices();
-    indices.prepareCreate("test").execute();
+    indices.prepareCreate("test").execute().actionGet();
     flush("test");
-    indices.prepareDelete("test").execute();
+    indices.prepareDelete("test").execute().actionGet();
   }
 }
