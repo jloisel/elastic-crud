@@ -1,10 +1,11 @@
 package com.jeromeloisel.db.integration.test;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.elasticsearch.client.Client;
+import org.elasticsearch.client.IndicesAdminClient;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.Assert.assertNotNull;
 
 public class ESTest extends SpringElasticSearchTest {
 
@@ -14,5 +15,9 @@ public class ESTest extends SpringElasticSearchTest {
   @Test
   public void shouldAutowire() {
     assertNotNull(client);
+    final IndicesAdminClient indices = client.admin().indices();
+    indices.prepareCreate("test").execute();
+    flush("test");
+    indices.prepareDelete("test").execute();
   }
 }

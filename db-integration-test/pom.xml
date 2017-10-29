@@ -37,11 +37,6 @@
 			<artifactId>db-conversion-jackson</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-    <dependency>
-      <groupId>com.jeromeloisel</groupId>
-      <artifactId>db-scroll-elastic</artifactId>
-      <version>${project.version}</version>
-    </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

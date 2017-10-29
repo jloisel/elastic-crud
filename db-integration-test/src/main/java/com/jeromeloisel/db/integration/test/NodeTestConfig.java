@@ -40,7 +40,7 @@ class NodeTestConfig {
       .put(Node.NODE_DATA_SETTING.getKey(), true)
       .put(NODE_ID_SEED_SETTING.getKey(), System.nanoTime())
       .build();
-    return new Node(settings).start();
+    return new Node(settings).start(); // NOSONAR
   }
 
   @Bean(destroyMethod = "close")
