@@ -112,6 +112,36 @@ public void method() {
 }
 ```
 
+Also, scrolling through massive amount of results is made dead easy with the scrolling API:
+```java
+@Autowired
+private DatabaseScrollingFactory factory;
+
+public void example() {
+  // Incorporated bulk delete
+  factory.newScroll("myIndex").scroll(factory.bulkDelete());
+  
+}
+```
+You simply have to implement the `DatabaseScroll` interface:
+
+```java
+@FunctionalInterface
+public interface DatabaseScroll {
+
+  default void onStartBatch() throws IOException {
+
+  }
+
+  void accept(SearchHit hit) throws IOException;
+
+  default void onEndBatch() throws IOException {
+
+  }
+}
+
+```
+
 ### Type mapping
 
 Beans stored in Elasticsearch must have **_source** field enabled: see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-source-field.html. The following example Json shows how to enable _source field:
