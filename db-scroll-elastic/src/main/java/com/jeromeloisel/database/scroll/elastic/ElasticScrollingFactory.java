@@ -20,7 +20,7 @@ import static org.elasticsearch.common.unit.TimeValue.timeValueMinutes;
 @Service
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-final class ElasticScrollingFactory implements DatabaseScrollingFactory {
+public final class ElasticScrollingFactory implements DatabaseScrollingFactory {
   private static final TimeValue DEFAULT_SCROLL_TIME = timeValueMinutes(1);
   public static final int DEFAULT_SCROLL_SIZE = 100;
 
