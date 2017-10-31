@@ -119,7 +119,10 @@ private DatabaseScrollingFactory factory;
 
 public void example() {
   // Incorporated bulk delete
-  factory.newScroll("myIndex").scroll(factory.bulkDelete());
+  factory
+    .newScroll("myIndex")
+    .withQuery(new MatchAllQueryBuilder())
+    .scroll(factory.bulkDelete());
   
 }
 ```
