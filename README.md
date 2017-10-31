@@ -164,18 +164,7 @@ Beans stored in Elasticsearch must have **_source** field enabled: see https://w
        },
        "_source": {
           "enabled": true
-       },
-       "dynamic_templates": [
-         {
-           "strings": {
-             "match_mapping_type": "string",
-             "mapping": {
-               "type": "string",
-               "index": "not_analyzed"
-             }
-           }
-         }
-       ]
+       }
     }
   }
 }
